@@ -3,7 +3,7 @@ var router = express.Router();
 const pool = require('./db_server');
 
 
-router.get('/switchDatabase/:databaseName', (req, res) => {
+router.get('/db/:databaseName', (req, res) => {
     const databaseName = req.params.databaseName
     const query = `USE ${databaseName}`
   

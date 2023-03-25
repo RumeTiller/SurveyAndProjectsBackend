@@ -25,6 +25,8 @@ app.use(session({
 // Import All Api
 const dbConnection = require('./routes/api/DBConnection/dbchange');
 const projectInfo = require('./routes/api/GetProjects/getProjectInfo');
+const vsSurvey = require('./routes/api/FildSurvey/vsSurvey');
+const asignSurvey = require('./routes/api/FildSurvey/asignSurveyor');
 const piechart = require('./routes/api/FildSurvey/pieChart');
 
 
@@ -47,9 +49,11 @@ app.use('/users', usersRouter);
 
 // Use of All Api 
 
-app.use('/switchDatabase/', dbConnection);
-app.use('/api', projectInfo)
-app.use('/api', piechart)
+app.use('/api/switchDatabase/', dbConnection);
+app.use('/api', projectInfo);
+app.use('/api', piechart);
+app.use('/api/vs', vsSurvey);
+app.use('/api/as', asignSurvey);
 
 
 

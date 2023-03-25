@@ -97,7 +97,6 @@ router.get("/grids/:projectname/:location/:phase", async (req, res) => {
 //Select team Number
 
 router.get("/teams/:projectname/:location/", async (req, res) => {
-
     try {
         const projectName = req.params.projectname;
         const Location = req.params.location;

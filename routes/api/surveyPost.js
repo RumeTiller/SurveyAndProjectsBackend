@@ -32,12 +32,10 @@ router.post("/vs/:project/:location/:phase/:grid", async (req, res) => {
   const location = req.params.location;
   const phase = req.params.phase;
   const gridNo = req.params.grid;
-  console.log(req.body);
   try {
     await config.query(`
     UPDATE public.grid_${project}
     SET  
-
     vs_check_by='${req.body.vs_check_by ? req.body.vs_check_by : null}', 
     vs_end_date='${req.body.vs_end_date ? req.body.vs_end_date : new Date().toISOString()}', 
     vs_structure='${parseInt(req.body.vs_structure)}',
@@ -48,7 +46,6 @@ router.post("/vs/:project/:location/:phase/:grid", async (req, res) => {
     vs_flood='${parseInt(req.body.vs_flood)}', 
     vs_drain='${parseInt(req.body.vs_drain)}', 
     survey = 'Yes'
-
     WHERE grid_no = ${gridNo} and phase_no = ${phase} and location = '${location}';`
     );
     res.sendStatus(200);
@@ -100,7 +97,6 @@ router.post("/asignsurveyor/:project/:location/:phase/:grid", async (req, res) =
   const location = req.params.location;
   const phase = req.params.phase;
   const gridNo = req.params.grid;
-  console.log(req.body.vs_surveyor_name);
   try {
     await config.query(`
     UPDATE public.grid_${project}
