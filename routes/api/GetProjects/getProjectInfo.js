@@ -33,7 +33,6 @@ router.use(function (req, res, next) {
     next();
   });
 
-
 //all projects
 router.get("/projectlist", async (req, res) => {
     sql.connect(configBasicDB, (err) => {
@@ -54,13 +53,14 @@ router.get("/layerlist", async (req, res) => {
         const Query = await config.query(`SELECT * FROM ${req.session.databaseName}.[dbo].[layer_list] where visibility ='true'`);
         res.json(Query.recordsets.reduce(function (r, a) { return r.concat(a); }));
     } catch (err) {
-        console.error(err.message);
+        console.error(err.message); 
     }
 });
 
 // get Location
 router.get("/locationlist", async (req, res) => {
     try {
+        console.log(req.session);
         const Query = await config.query(`SELECT DISTINCT  location FROM ${req.session.databaseName}.[dbo].[SURVEY_GRIDS]`);
         res.json(Query.recordsets.reduce(function (r, a) { return r.concat(a); }));
     } catch (err) {
@@ -98,7 +98,6 @@ router.get("/teams/:location", async (req, res) => {
     try {
 
         const Location = req.params.location;
-
         const Query = await config.query(`select distinct team from ${req.session.databaseName}.[dbo].surveyor_information  where location ='${Location}' order by team`);
         res.json(Query.recordsets.reduce(function (r, a) { return r.concat(a); }));
 
